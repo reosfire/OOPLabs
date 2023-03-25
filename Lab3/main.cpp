@@ -10,42 +10,31 @@
 #include "../Lib/mylocale.h"
 #include "worker.h"
 #include "../Lib/myio.h"
+#include "../Lib/labeledFunction.h"
 
-#define RAW_PROVIDER 1
-#define EQUIPMENT_PROVIDER 2
-
-using namespace std;
-
-vector<worker> getInitialWorkers() {
-    ifstream file("data.txt");
-
-    if (!file.is_open()) return {};
-
-    int count = readInt(file);
-    vector<worker> result(count);
-
-    for (int i = 0; i < count; ++i) {
-        cin >> result[i];
-    }
-
-    file.close();
-    return result;
+void add(std::vector<worker>& workers) {
+    worker toAdd;
+    std::cin >> toAdd;
+    workers.push_back(toAdd);
 }
 
-void save(vector<worker>& workers) {
-
+void print(std::vector<worker>& workers) {
+    for (const auto &worker: workers) {
+        std::cout << worker << '\n';
+    }
 }
 
 int main() {
     useRussian();
 
-    vector<worker> workers = getInitialWorkers();
+    std::vector<worker> workers = worker::getInitialWorkers();
 
-    while (true) {
-        int command = readInt();
-    }
+    std::vector<labeledFunction> functions{ labeledFunction("Выход", [](){}),
+                                            labeledFunction("Добавить", [&workers](){ add(workers); }),
+                                            labeledFunction("Распечатать", [&workers](){ print(workers); }) };
 
-exit:
-    save(workers);
+    labeledFunction::runLoop(functions);
+
+    worker::saveWorkers(workers);
     return 0;
 }

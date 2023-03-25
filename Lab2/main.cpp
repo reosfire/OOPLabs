@@ -266,7 +266,7 @@ int saveData(Supplier* provider, int count) {
     fclose(file);
 }
 
-void printFunctions() {
+void printCurrentFunctions() {
     int lineW = 40;
     cout << setfill('.');
     cout << setw(lineW) << left << "Выйти " << right << " 0" << endl;
@@ -297,7 +297,7 @@ int main() {
     Supplier* providers = tryReadInitialData(&providersCount);
 
     while (true) {
-        printFunctions();
+        printCurrentFunctions();
         cout << "Введите номер функции из списка выше: ";
         int function = readInt();
         switch (function) {

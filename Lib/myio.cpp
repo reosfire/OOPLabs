@@ -35,10 +35,10 @@ char* readLine(std::istream& stream) {
     delete[] buffer;
     return result;
 }
-int readInt(std::istream& file) {
+int readInt(std::istream& stream) {
     int result;
     while (true) {
-        char* line = readLine(file);
+        char* line = readLine(stream);
         int n;
         int readCount = sscanf_s(line, "%i%n", &result, &n);
         if (readCount == 1 && n == strlen(line)) break;
@@ -48,10 +48,10 @@ int readInt(std::istream& file) {
     }
     return result;
 }
-double readDouble(std::istream& file) {
+double readDouble(std::istream& stream) {
     double result;
     while (true) {
-        char* line = readLine(file);
+        char* line = readLine(stream);
         int n;
         int readCount = sscanf_s(line, "%lf%n", &result, &n);
         if (readCount == 1 && n == strlen(line)) break;
@@ -63,9 +63,9 @@ double readDouble(std::istream& file) {
 }
 
 bool is_space(char c) { return isspace(c); }
-std::string readNotEmptyLine() {
+std::string readNotEmptyLine(std::istream& stream) {
     while (true) {
-        std::string result = readLine();
+        std::string result = readLine(stream);
         if (!all_of(result.begin(), result.end(), is_space)) return result;
         std::cout << "Вы ввели пустую строку. Введите не пустую: ";
     }
