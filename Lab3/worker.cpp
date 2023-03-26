@@ -1,8 +1,8 @@
 #include "worker.h"
 #include "../Lib/myio.h"
 
-struct comma_separator : std::numpunct<char> {
-    virtual char do_decimal_point() const override { return ','; }
+struct comma_separator: std::numpunct<char> {
+    char do_decimal_point() const override { return ','; }
 };
 
 std::ostream &operator<<(std::ostream &stream, const worker &worker) {

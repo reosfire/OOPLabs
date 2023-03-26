@@ -6,10 +6,6 @@ protected:
     std::string name;
     std::string surname;
 public:
-    std::string getName() const {
-        return name;
-    }
-    std::string getSurname() const {
-        return surname;
-    }
+    std::string getName() const;
+    std::string getSurname() const;
 };
