@@ -2,6 +2,9 @@
 #include <string>
 
 class man {
+private:
+    friend std::istream& operator>> (std::istream& stream, man& v);
+
 protected:
     std::string name;
     std::string surname;

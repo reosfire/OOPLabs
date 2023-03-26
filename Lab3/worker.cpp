@@ -9,22 +9,29 @@ std::ostream &operator<<(std::ostream &stream, const worker &worker) {
     stream.imbue(std::locale(std::cout.getloc(), new comma_separator));
     stream << worker.name << std::endl;
     stream << worker.surname << std::endl;
-    stream << worker.departmentNumber << std::endl;
+    stream << worker.department << std::endl;
     stream << worker.salary << std::endl;
     return stream;
 }
 std::istream &operator>>(std::istream &stream, worker &worker) {
-    if (stream.rdbuf() == std::cin.rdbuf()) std::cout << "¬ведите им€: ";
-    worker.name = readLine(stream);
-    if (stream.rdbuf() == std::cin.rdbuf()) std::cout << "¬ведите фамилию: ";
-    worker.surname = readLine(stream);
-    if (stream.rdbuf() == std::cin.rdbuf()) std::cout << "¬ведите номер отдела: ";
-    worker.departmentNumber = readInt(stream);
-    if (stream.rdbuf() == std::cin.rdbuf()) std::cout << "¬ведите зарплату: ";
-    worker.salary = readDouble(stream);
+    if (stream.rdbuf() == std::cin.rdbuf()) {
+        man& man = worker;
+        stream >> man;
+        std::cout << "¬ведите номер отдела: ";
+        worker.department = readInt(stream);
+        std::cout << "¬ведите зарплату: ";
+        worker.salary = readDouble(stream);
+    }
+    else {
+        man& man = worker;
+        stream >> man;
+        worker.department = readInt(stream);
+        worker.salary = readDouble(stream);
+    }
+
     return stream;
 }
-bool worker::operator==(const man &other) {
+bool worker::operator==(const man &other) const {
     return name == other.getName() && surname == other.getSurname();
 }
 
@@ -52,4 +59,11 @@ void worker::saveWorkers(const std::vector<worker>& workers, const std::string& 
     }
 
     file.close();
+}
+
+int worker::getDepartment() const {
+    return department;
+}
+double worker::getSalary() const {
+    return salary;
 }
