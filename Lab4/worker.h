@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <fstream>
-#include "fullName.h"
+#include "baseWorker.h"
 
-class worker {
+class worker: public baseWorker {
 private:
     friend std::ostream& operator<< (std::ostream& stream, worker const& v);
     friend std::istream& operator>> (std::istream& stream, worker& v);
@@ -15,12 +15,10 @@ public:
 private:
     int department{};
     double salary{};
-    fullName name{};
 
 public:
     int getDepartment() const;
     double getSalary() const;
-    fullName getName() const;
 
     void print() const;
 

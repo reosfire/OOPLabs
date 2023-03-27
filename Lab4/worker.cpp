@@ -14,19 +14,9 @@ std::ostream &operator<<(std::ostream &stream, const worker &worker) {
     return stream;
 }
 std::istream &operator>>(std::istream &stream, worker &worker) {
-    if (stream.rdbuf() == std::cin.rdbuf()) {
-        stream >> worker.name;
-        std::cout << "¬ведите номер отдела: ";
-        worker.department = readInt(stream);
-        std::cout << "¬ведите зарплату: ";
-        worker.salary = readDouble(stream);
-    }
-    else {
-        stream >> worker.name;
-        worker.department = readInt(stream);
-        worker.salary = readDouble(stream);
-    }
-
+    stream >> worker.name;
+    worker.department = readInt(stream);
+    worker.salary = readDouble(stream);
     return stream;
 }
 bool worker::operator==(const fullName& other) const {
@@ -67,9 +57,6 @@ int worker::getDepartment() const {
 }
 double worker::getSalary() const {
     return salary;
-}
-fullName worker::getName() const {
-    return name;
 }
 
 void worker::print() const {

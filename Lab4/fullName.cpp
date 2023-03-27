@@ -14,7 +14,6 @@ std::ostream &operator<<(std::ostream &stream, const fullName &e) {
     return stream;
 }
 std::istream &operator>>(std::istream &stream, fullName &e) {
-    e.name = readLine(stream);
-    e.surname = readLine(stream);
+    stream >> e.name >> e.surname;
     return stream;
 }
