@@ -9,4 +9,4 @@ add_executable(Lab4 main.cpp ../Lib/myio.cpp ../Lib/myio.h
         ../Lib/labeledFunction.cpp ../Lib/labeledFunction.h
         consoleInteractor.cpp consoleInteractor.h
         fullName.cpp fullName.h
-        date.cpp date.h worker1.cpp worker1.h)
+        date.cpp date.h worker1.cpp worker1.h baseWorker.cpp baseWorker.h)
