@@ -19,7 +19,9 @@ void labeledFunction::printFunctions(const std::vector<labeledFunction>& functio
 
 void labeledFunction::runLoop(const std::vector<labeledFunction>& functions, int exit) {
     while (true) {
+        std::cout << std::endl;
         labeledFunction::printFunctions(functions);
+
         std::cout << "¬ведите номер функции из списка выше: ";
         int function = readInt();
         std::cout << std::endl;

@@ -34,6 +34,9 @@ std::istream &operator>>(std::istream &stream, worker &worker) {
 bool worker::operator==(const man &other) const {
     return name == other.getName() && surname == other.getSurname();
 }
+bool worker::operator!=(const man &other) const {
+    return name != other.getName() || surname != other.getSurname();
+}
 
 std::vector<worker> worker::getInitialWorkers(const std::string& fileName) {
     std::ifstream file(fileName);
@@ -66,4 +69,11 @@ int worker::getDepartment() const {
 }
 double worker::getSalary() const {
     return salary;
+}
+
+void worker::print() const {
+    std::cout << std::setw(10) << std::left << "Имя: " << name << std::endl;
+    std::cout << std::setw(10) << std::left << "Фамилия: " << surname << std::endl;
+    std::cout << std::setw(10) << std::left << "Отдел: " << department << std::endl;
+    std::cout << std::setw(10) << std::left << "Зарплата: " << salary << std::endl;
 }

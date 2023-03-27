@@ -19,25 +19,28 @@ void consoleInteractor::start() {
     worker::saveWorkers(workers);
 }
 
-
 void consoleInteractor::add() {
     worker toAdd;
     std::cin >> toAdd;
     workers.push_back(toAdd);
 }
 void consoleInteractor::print() {
+    if (workers.empty()) std::cout << "Ѕаза данных пуста!" << std::endl;
     for (const auto &worker: workers) {
-        std::cout << worker << std::endl;
+        worker.print();
+        std::cout << std::endl;
     }
 }
 void consoleInteractor::findByDepartment() {
+    std::cout << "¬ведите номер отдела: ";
     int department = readInt();
 
     bool found = false;
 
     for (const auto &worker: workers) {
         if (worker.getDepartment() == department) {
-            std::cout << worker << std::endl;
+            worker.print();
+            std::cout << std::endl;
             found = true;
         }
     }
@@ -49,7 +52,7 @@ int compare(double a, double b) {
 }
 void consoleInteractor::sort() {
     std::sort(workers.begin(), workers.end(), [](const worker& a, const worker& b) {
-        return compare(a.getSalary(), b.getSalary());
+        return compare(b.getSalary(), a.getSalary());
     });
 
     print();
@@ -57,11 +60,13 @@ void consoleInteractor::sort() {
 void consoleInteractor::findByMan() {
     man ma;
     std::cin >> ma;
-    const man m = ma;
+
+    std::cout << std::endl;
 
     for (const auto &worker: workers) {
-        if (worker == m) {
-            std::cout << worker << std::endl;
+        if (worker == ma) {
+            worker.print();
+            std::cout << std::endl;
             return;
         }
     }
