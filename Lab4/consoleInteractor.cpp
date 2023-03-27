@@ -58,13 +58,13 @@ void consoleInteractor::sort() {
     print();
 }
 void consoleInteractor::findByMan() {
-    man ma;
-    std::cin >> ma;
+    fullName name;
+    std::cin >> name;
 
     std::cout << std::endl;
 
     for (const auto &worker: workers) {
-        if (worker == ma) {
+        if (worker == name) {
             worker.print();
             std::cout << std::endl;
             return;

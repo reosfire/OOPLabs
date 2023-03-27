@@ -7,35 +7,33 @@ struct comma_separator: std::numpunct<char> {
 
 std::ostream &operator<<(std::ostream &stream, const worker &worker) {
     stream.imbue(std::locale(std::cout.getloc(), new comma_separator));
-    stream << worker.name << std::endl;
-    stream << worker.surname << std::endl;
+    stream << worker.name.getName() << std::endl;
+    stream << worker.name.getSurname() << std::endl;
     stream << worker.department << std::endl;
     stream << worker.salary << std::endl;
     return stream;
 }
 std::istream &operator>>(std::istream &stream, worker &worker) {
     if (stream.rdbuf() == std::cin.rdbuf()) {
-        man& man = worker;
-        stream >> man;
+        stream >> worker.name;
         std::cout << "Введите номер отдела: ";
         worker.department = readInt(stream);
         std::cout << "Введите зарплату: ";
         worker.salary = readDouble(stream);
     }
     else {
-        man& man = worker;
-        stream >> man;
+        stream >> worker.name;
         worker.department = readInt(stream);
         worker.salary = readDouble(stream);
     }
 
     return stream;
 }
-bool worker::operator==(const man &other) const {
-    return name == other.getName() && surname == other.getSurname();
+bool worker::operator==(const fullName& other) const {
+    return name.getName() == other.getName() && name.getSurname() == other.getSurname();
 }
-bool worker::operator!=(const man &other) const {
-    return name != other.getName() || surname != other.getSurname();
+bool worker::operator!=(const fullName& other) const {
+    return name.getName() != other.getName() || name.getSurname() != other.getSurname();
 }
 
 std::vector<worker> worker::getInitialWorkers(const std::string& fileName) {
@@ -70,10 +68,13 @@ int worker::getDepartment() const {
 double worker::getSalary() const {
     return salary;
 }
+fullName worker::getName() const {
+    return name;
+}
 
 void worker::print() const {
-    std::cout << std::setw(10) << std::left << "Имя: " << name << std::endl;
-    std::cout << std::setw(10) << std::left << "Фамилия: " << surname << std::endl;
+    std::cout << std::setw(10) << std::left << "Имя: " << name.getName() << std::endl;
+    std::cout << std::setw(10) << std::left << "Фамилия: " << name.getSurname() << std::endl;
     std::cout << std::setw(10) << std::left << "Отдел: " << department << std::endl;
     std::cout << std::setw(10) << std::left << "Зарплата: " << salary << std::endl;
 }

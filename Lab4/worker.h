@@ -2,23 +2,25 @@
 
 #include <vector>
 #include <fstream>
-#include "man.h"
+#include "fullName.h"
 
-class worker: public man {
+class worker {
 private:
     friend std::ostream& operator<< (std::ostream& stream, worker const& v);
     friend std::istream& operator>> (std::istream& stream, worker& v);
 public:
-    bool operator == (const man& b) const;
-    bool operator != (const man& b) const;
+    bool operator == (const fullName& b) const;
+    bool operator != (const fullName& b) const;
 
 private:
     int department{};
     double salary{};
+    fullName name{};
 
 public:
     int getDepartment() const;
     double getSalary() const;
+    fullName getName() const;
 
     void print() const;
 
