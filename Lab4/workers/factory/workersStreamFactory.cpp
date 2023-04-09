@@ -7,6 +7,7 @@ baseWorker* workersStreamFactory::factorize(std::istream& stream) const {
 }
 
 baseWorker* workersStreamFactory::factorizeFromConsole() const {
+    std::cout << "Введите тип сотрудника 0 для создания Worker, 1 для Worker1: ";
     int type;
     while (true) {
         type = readInt();
