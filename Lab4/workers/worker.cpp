@@ -26,39 +26,6 @@ bool worker::operator!=(const fullName& other) const {
     return name.getName() != other.getName() || name.getSurname() != other.getSurname();
 }
 
-std::vector<worker> worker::getInitialWorkers(const std::string& fileName) {
-    std::ifstream file(fileName);
-
-    if (!file.is_open()) return {};
-
-    int count = readInt(file);
-    std::vector<worker> result(count);
-
-    for (int i = 0; i < count; ++i) {
-        file >> result[i];
-    }
-
-    file.close();
-    return result;
-}
-void worker::saveWorkers(const std::vector<worker>& workers, const std::string& fileName) {
-    std::ofstream file(fileName);
-
-    file << workers.size() << std::endl;
-    for (const auto &worker: workers) {
-        file << worker;
-    }
-
-    file.close();
-}
-
-int worker::getDepartment() const {
-    return department;
-}
-double worker::getSalary() const {
-    return salary;
-}
-
 void worker::print() const {
     std::cout << std::setw(10) << std::left << "Имя: " << name.getName() << std::endl;
     std::cout << std::setw(10) << std::left << "Фамилия: " << name.getSurname() << std::endl;

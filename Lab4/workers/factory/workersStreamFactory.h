@@ -1,8 +1,13 @@
-//
-// Created by 2com9 on 09.04.2023.
-//
+#include <vector>
+#include "IWorkerCreator.h"
 
-#ifndef OOPLABS_WORKERSSTREAMFACTORY_H
-#define OOPLABS_WORKERSSTREAMFACTORY_H
+class workersStreamFactory {
+private:
+    const std::vector<IWorkerCreator>& creators;
+public:
+    workersStreamFactory(const std::vector<IWorkerCreator>& c): creators(c) { }
 
-#endif //OOPLABS_WORKERSSTREAMFACTORY_H
+    baseWorker factorize(const std::istream& stream) const;
+
+    static std::vector<baseWorker> getInitialWorkers(const std::string& fileName = "data.txt");
+};

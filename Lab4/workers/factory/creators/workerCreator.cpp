@@ -1,3 +1,11 @@
-//
-// Created by 2com9 on 09.04.2023.
-//
+#include "../IWorkerCreator.h"
+
+class workerCreator: public IWorkerCreator {
+    baseWorker create(const std::istream& stream) const override {
+
+    }
+
+    baseWorker createFromConsole() override {
+
+    }
+};

@@ -10,7 +10,7 @@ private:
     const std::function<void()>& procedure;
 
 public:
-    labeledFunction(std::string  label, const std::function<void()>& procedure): label(std::move(label)), procedure(procedure) { }
+    labeledFunction(std::string label, const std::function<void()>& procedure): label(std::move(label)), procedure(procedure) { }
 
     void invoke() const;
 

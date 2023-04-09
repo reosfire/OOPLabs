@@ -16,5 +16,6 @@ public:
     std::string getMonth() const;
     int getYear() const;
 
+    std::string toString() const;
     void print();
 };

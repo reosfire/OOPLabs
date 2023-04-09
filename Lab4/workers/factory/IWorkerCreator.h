@@ -1,8 +1,9 @@
-//
-// Created by 2com9 on 09.04.2023.
-//
+#pragma ones
 
-#ifndef OOPLABS_IWORKERCREATOR_H
-#define OOPLABS_IWORKERCREATOR_H
+#include "../baseWorker.h"
 
-#endif //OOPLABS_IWORKERCREATOR_H
+class IWorkerCreator {
+public:
+    virtual baseWorker create(const std::istream& stream) const = 0;
+    virtual baseWorker createFromConsole() = 0;
+};
