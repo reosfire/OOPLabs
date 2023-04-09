@@ -1,13 +1,17 @@
-#include <vector>
+#pragma ones
+
 #include "IWorkerCreator.h"
+#include "../../../Lib/myio.h"
 
 class workersStreamFactory {
 private:
-    const std::vector<IWorkerCreator>& creators;
+    const std::vector<IWorkerCreator*>& creators;
 public:
-    workersStreamFactory(const std::vector<IWorkerCreator>& c): creators(c) { }
+    explicit workersStreamFactory(const std::vector<IWorkerCreator*>& c): creators(c) { }
+    workersStreamFactory();
 
-    baseWorker factorize(const std::istream& stream) const;
+    baseWorker* factorize(std::istream& stream) const;
+    baseWorker* factorizeFromConsole() const;
 
-    static std::vector<baseWorker> getInitialWorkers(const std::string& fileName = "data.txt");
+    std::vector<baseWorker*> getInitialWorkers(const std::string& fileName = "data.txt") const;
 };

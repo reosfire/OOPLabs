@@ -1,5 +1,6 @@
+#pragma ones
+
 #include "fullName.h"
-#include "../Lib/myio.h"
 
 std::string fullName::getName() const {
     return name;
@@ -16,4 +17,11 @@ std::ostream &operator<<(std::ostream &stream, const fullName &e) {
 std::istream &operator>>(std::istream &stream, fullName &e) {
     stream >> e.name >> e.surname;
     return stream;
+}
+
+bool fullName::operator==(const fullName &other) {
+    return name == other.name && surname == other.surname;
+}
+bool fullName::operator!=(const fullName &other) {
+    return !(*this == other);
 }

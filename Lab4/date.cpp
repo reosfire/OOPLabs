@@ -1,3 +1,5 @@
+#pragma ones
+
 #include "date.h"
 
 std::ostream &operator<<(std::ostream& stream, const date& e) {
@@ -23,7 +25,9 @@ int date::getYear() const {
 std::string date::toString() const {
     return std::to_string(day) + " " + month + " " + std::to_string(year);
 }
-
-void date::print() {
+void date::print() const {
     std::cout << toString() << std::endl;
+}
+void date::serialize(std::ostream &stream) const {
+    stream << toString() << std::endl;
 }

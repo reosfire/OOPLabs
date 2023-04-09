@@ -1,24 +1,37 @@
-#include "workersStreamFactory.h"
-#include "../../../Lib/myio.h"
+#pragma ones
 
-baseWorker workersStreamFactory::factorize(const std::istream& stream) const {
+#include "workersStreamFactory.h"
+
+baseWorker* workersStreamFactory::factorize(std::istream& stream) const {
     int type;
-    std::cin >> type;
-    return creators[type].create(stream);
+    stream >> type;
+    return creators[type]->create(stream);
 }
 
-std::vector<baseWorker> workersStreamFactory::getInitialWorkers(const std::string &fileName) {
+baseWorker* workersStreamFactory::factorizeFromConsole() const {
+    int type;
+    while (true) {
+        type = readInt();
+        if (type >= 0 && type < creators.size()) break;
+        std::cout << "Некоректный тип сотрудника введите 0 для создания Worker, 1 для Worker1: ";
+    }
+    return creators[type]->createFromConsole();
+}
+
+std::vector<baseWorker*> workersStreamFactory::getInitialWorkers(const std::string &fileName) const {
     std::ifstream file(fileName);
 
     if (!file.is_open()) return {};
 
     int count = readInt(file);
-    std::vector<baseWorker> result;
+    std::vector<baseWorker*> result(count);
 
     for (int i = 0; i < count; ++i) {
-        file >> result[i];
+        result[i] = factorize(file);
     }
 
     file.close();
     return result;
 }
+
+workersStreamFactory::workersStreamFactory(): workersStreamFactory(std::vector<IWorkerCreator*>()) { }

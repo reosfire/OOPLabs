@@ -1,4 +1,5 @@
 #pragma ones
+
 #include <iostream>
 
 class fullName {
@@ -9,6 +10,8 @@ private:
     std::string name;
     std::string surname;
 public:
+    bool operator ==(const fullName& other);
+    bool operator !=(const fullName& other);
 
     std::string getName() const;
     std::string getSurname() const;

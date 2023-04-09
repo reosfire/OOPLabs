@@ -1,9 +1,9 @@
-#include "consoleInteractor.h"
-#include "../Lib/myio.h"
+#pragma ones
 
-consoleInteractor::consoleInteractor() {
-    workers = worker::getInitialWorkers();
-}
+#include "consoleInteractor.h"
+
+consoleInteractor::consoleInteractor(workersStreamFactory& factory): factory(factory) { }
+
 void consoleInteractor::start() {
     std::vector<labeledFunction> functions {
             labeledFunction("Выход", [](){}),
@@ -16,18 +16,16 @@ void consoleInteractor::start() {
 
     labeledFunction::runLoop(functions);
 
-    worker::saveWorkers(workers);
+    baseWorker::saveWorkers(workers);
 }
 
 void consoleInteractor::add() {
-    worker toAdd;
-    std::cin >> toAdd;
-    workers.push_back(toAdd);
+    workers.push_back(factory.factorizeFromConsole());
 }
 void consoleInteractor::print() {
     if (workers.empty()) std::cout << "База данных пуста!" << std::endl;
     for (const auto &worker: workers) {
-        worker.print();
+        worker->print();
         std::cout << std::endl;
     }
 }
@@ -38,8 +36,8 @@ void consoleInteractor::findByDepartment() {
     bool found = false;
 
     for (const auto &worker: workers) {
-        if (worker.getDepartment() == department) {
-            worker.print();
+        if (worker->getDepartment() == department) {
+            worker->print();
             std::cout << std::endl;
             found = true;
         }
@@ -51,8 +49,8 @@ int compare(double a, double b) {
     return (a > b) - (b > a);
 }
 void consoleInteractor::sort() {
-    std::sort(workers.begin(), workers.end(), [](const worker& a, const worker& b) {
-        return compare(b.getSalary(), a.getSalary());
+    std::sort(workers.begin(), workers.end(), [](const baseWorker* a, const baseWorker* b) {
+        return compare(b->getSalary(), a->getSalary());
     });
 
     print();
@@ -64,8 +62,8 @@ void consoleInteractor::findByMan() {
     std::cout << std::endl;
 
     for (const auto &worker: workers) {
-        if (worker == name) {
-            worker.print();
+        if (worker->getName() == name) {
+            worker->print();
             std::cout << std::endl;
             return;
         }

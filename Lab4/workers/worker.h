@@ -3,15 +3,10 @@
 #include <vector>
 #include <fstream>
 #include "baseWorker.h"
+#include "factory/IWorkerCreator.h"
+#include "../../Lib/myio.h"
 
 class worker: public baseWorker {
-private:
-    friend std::ostream& operator<< (std::ostream& stream, worker const& v);
-    friend std::istream& operator>> (std::istream& stream, worker& v);
-
-public:
-    bool operator == (const fullName& b) const;
-    bool operator != (const fullName& b) const;
-
     void print() const override;
+    void serialize(std::ofstream &stream) const override;
 };

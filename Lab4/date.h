@@ -17,5 +17,6 @@ public:
     int getYear() const;
 
     std::string toString() const;
-    void print();
+    void print() const;
+    void serialize(std::ostream& stream) const;
 };

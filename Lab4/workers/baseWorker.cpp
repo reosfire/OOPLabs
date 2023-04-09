@@ -1,3 +1,5 @@
+#pragma ones
+
 #include "baseWorker.h"
 
 fullName baseWorker::getName() const {
@@ -10,16 +12,15 @@ int baseWorker::getDepartment() const {
     return department;
 }
 
-baseWorker::baseWorker(fullName name, double salary, int department) : name(std::move(name)), salary(salary),
-                                                                              department(department) {}
-
-void baseWorker::saveWorkers(const std::vector<baseWorker> &workers, const std::string &fileName) {
+void baseWorker::saveWorkers(const std::vector<baseWorker*> &workers, const std::string &fileName) {
     std::ofstream file(fileName);
 
     file << workers.size() << std::endl;
     for (const auto &worker: workers) {
-        worker.serialize(file);
+        worker->serialize(file);
     }
 
     file.close();
 }
+
+baseWorker::~baseWorker() = default;

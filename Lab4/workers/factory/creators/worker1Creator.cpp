@@ -1,11 +1,11 @@
-#include "../IWorkerCreator.h"
+#pragma ones
 
-class worker1Creator: public IWorkerCreator {
-    baseWorker create(const std::istream& stream) const override {
+#include "worker1Creator.h"
 
-    }
+baseWorker* worker1Creator::create(std::istream &stream) const {
 
-    baseWorker createFromConsole() override {
+}
 
-    }
-};
+baseWorker* worker1Creator::createFromConsole() const {
+
+}

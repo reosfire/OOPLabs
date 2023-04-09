@@ -1,12 +1,14 @@
 #pragma ones
-
 #include <iostream>
 #include "workers/worker.h"
 #include "../Lib/labeledFunction.h"
+#include "workers/factory/workersStreamFactory.h"
+#include "../Lib/myio.h"
 
 class consoleInteractor {
 private:
-    std::vector<worker> workers;
+    std::vector<baseWorker*> workers;
+    workersStreamFactory factory;
 
     void add();
     void print();
@@ -15,7 +17,7 @@ private:
     void findByMan();
 
 public:
-    explicit consoleInteractor();
+    explicit consoleInteractor(workersStreamFactory& factory);
 
     void start();
 };

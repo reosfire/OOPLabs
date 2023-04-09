@@ -4,6 +4,8 @@
 
 class IWorkerCreator {
 public:
-    virtual baseWorker create(const std::istream& stream) const = 0;
-    virtual baseWorker createFromConsole() = 0;
+    virtual ~IWorkerCreator() = default;
+
+    virtual baseWorker* create(std::istream& stream) const = 0;
+    virtual baseWorker* createFromConsole() const = 0;
 };
