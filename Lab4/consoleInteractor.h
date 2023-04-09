@@ -1,7 +1,7 @@
 #pragma ones
 
 #include <iostream>
-#include "worker.h"
+#include "workers/worker.h"
 #include "../Lib/labeledFunction.h"
 
 class consoleInteractor {

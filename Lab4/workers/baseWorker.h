@@ -1,6 +1,6 @@
 #pragma ones
 
-#include "fullName.h"
+#include "../fullName.h"
 
 class baseWorker {
 protected:
