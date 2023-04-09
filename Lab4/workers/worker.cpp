@@ -12,6 +12,7 @@ void worker::print() const {
 }
 void worker::serialize(std::ofstream &stream) const {
     stream.imbue(std::locale(std::cout.getloc(), new comma_separator));
+    stream << 0 << std::endl; //type
     stream << name.getName() << std::endl;
     stream << name.getSurname() << std::endl;
     stream << department << std::endl;
