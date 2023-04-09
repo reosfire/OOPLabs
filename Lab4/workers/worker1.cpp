@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "worker1.h"
 
 void worker1::print() const {

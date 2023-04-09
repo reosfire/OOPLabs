@@ -1,4 +1,5 @@
-#pragma ones
+#pragma once
+
 #include <iostream>
 #include "workers/worker.h"
 #include "../Lib/labeledFunction.h"

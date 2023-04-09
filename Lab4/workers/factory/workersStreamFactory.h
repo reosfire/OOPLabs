@@ -1,4 +1,4 @@
-#pragma ones
+#pragma once
 
 #include "IWorkerCreator.h"
 #include "../../../Lib/myio.h"

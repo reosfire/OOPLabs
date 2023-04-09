@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "worker.h"
 
 struct comma_separator: std::numpunct<char> {

@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "fullName.h"
 
 std::string fullName::getName() const {

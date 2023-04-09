@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "worker1Creator.h"
 
 baseWorker* worker1Creator::create(std::istream &stream) const {

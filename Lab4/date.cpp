@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "date.h"
 
 std::ostream &operator<<(std::ostream& stream, const date& e) {

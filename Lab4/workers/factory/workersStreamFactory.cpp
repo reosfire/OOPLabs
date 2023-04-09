@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "workersStreamFactory.h"
 
 baseWorker* workersStreamFactory::factorize(std::istream& stream) const {

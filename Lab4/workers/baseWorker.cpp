@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "baseWorker.h"
 
 fullName baseWorker::getName() const {

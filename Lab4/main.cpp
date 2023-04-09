@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "consoleInteractor.h"
 #include "../Lib/mylocale.h"
 #include "workers/factory/creators/workerCreator.h"

@@ -1,5 +1,3 @@
-#pragma ones
-
 #include "consoleInteractor.h"
 
 consoleInteractor::consoleInteractor(workersStreamFactory& factory): factory(factory) { }
