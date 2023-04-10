@@ -18,3 +18,5 @@ void worker1::serialize(std::ofstream &stream) const {
     stream << department << std::endl;
     stream << salary << std::endl;
 }
+
+worker1::worker1(const fullName &name, double salary, int department): baseWorker(name, salary, department) { }

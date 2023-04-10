@@ -15,6 +15,8 @@ void worker::serialize(std::ofstream &stream) const {
     stream << 0 << std::endl; //type
     stream << name.getName() << std::endl;
     stream << name.getSurname() << std::endl;
-    stream << department << std::endl;
     stream << salary << std::endl;
+    stream << department << std::endl;
 }
+
+worker::worker(const fullName &name, double salary, int department) : baseWorker(name, salary, department) {}

@@ -18,7 +18,6 @@ char* readLine(std::istream& stream) {
             delete[] buffer;
 
             buffer = newBuffer;
-
         }
 
         buffer[length] = readChar;
@@ -69,6 +68,38 @@ std::string readNotEmptyLine(std::istream& stream) {
         if (!all_of(result.begin(), result.end(), is_space)) return result;
         std::cout << "¬ы ввели пустую строку. ¬ведите не пустую: ";
     }
+}
+
+fullName readFullName(std::istream& stream) {
+    std::cout << "¬ведите им€: ";
+    std::string name = readNotEmptyLine();
+    std::cout << "¬ведите фамилию: ";
+    std::string surname = readNotEmptyLine();
+    return { name, surname };
+}
+date readDate(std::istream& stream) {
+    int day;
+    std::string month;
+    int year;
+
+    std::cout << "¬ведите день: ";
+    while (true) {
+        day = readInt();
+        if (day > 0 && day <= 31) break;
+        std::cout << "¬ы ввели некорректный день мес€ца, введите число из [1; 31]: ";
+    }
+
+    std::cout << "¬ведите мес€ц: ";
+    while (true) {
+        month = readNotEmptyLine();
+        if (date::isCorrectMonth(month)) break;
+        std::cout << "¬ы ввели некорректный мес€ц";
+    }
+
+    std::cout << "¬ведите год: ";
+    year = readInt();
+
+    return { day, month, year };
 }
 
 void writeString(FILE* file, const char* value) {

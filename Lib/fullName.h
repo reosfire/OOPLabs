@@ -13,6 +13,10 @@ public:
     bool operator ==(const fullName& other);
     bool operator !=(const fullName& other);
 
+    fullName(std::string name, std::string surname);
+
+    fullName();
+
     std::string getName() const;
     std::string getSurname() const;
 };

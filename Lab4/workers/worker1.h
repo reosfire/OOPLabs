@@ -8,6 +8,8 @@
 
 class worker1 : public baseWorker {
 public:
+    worker1(const fullName &name, double salary, int department);
+
     void print() const override;
     void serialize(std::ofstream& stream) const override;
 };

@@ -3,7 +3,7 @@
 #include <vector>
 #include <utility>
 #include <fstream>
-#include "../fullName.h"
+#include "../../Lib/fullName.h"
 
 class baseWorker {
 protected:
@@ -12,6 +12,8 @@ protected:
     int department;
 
 public:
+    baseWorker(fullName name, double salary, int department);
+
     fullName getName() const;
     double getSalary() const;
     int getDepartment() const;

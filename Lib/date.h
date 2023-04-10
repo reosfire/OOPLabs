@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 class date {
 private:
@@ -12,6 +13,8 @@ private:
     int year;
 
 public:
+    date(int day, std::string month, int year);
+
     int getDay() const;
     std::string getMonth() const;
     int getYear() const;
@@ -19,4 +22,8 @@ public:
     std::string toString() const;
     void print() const;
     void serialize(std::ostream& stream) const;
+
+    static const std::string months[];
+    static int monthToInt(const std::string& month);
+    static bool isCorrectMonth(const std::string& month);
 };

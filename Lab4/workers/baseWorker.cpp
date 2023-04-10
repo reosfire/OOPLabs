@@ -1,5 +1,7 @@
 #include "baseWorker.h"
 
+#include <utility>
+
 fullName baseWorker::getName() const {
     return name;
 }
@@ -20,5 +22,8 @@ void baseWorker::saveWorkers(const std::vector<baseWorker*> &workers, const std:
 
     file.close();
 }
+
+baseWorker::baseWorker(fullName name, double salary, int department) : name(std::move(name)), salary(salary),
+                                                                              department(department) { }
 
 baseWorker::~baseWorker() = default;

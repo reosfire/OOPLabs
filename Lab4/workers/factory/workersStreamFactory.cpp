@@ -12,7 +12,7 @@ baseWorker* workersStreamFactory::factorizeFromConsole() const {
     while (true) {
         type = readInt();
         if (type >= 0 && type < creators.size()) break;
-        std::cout << "Некоректный тип сотрудника введите 0 для создания Worker, 1 для Worker1: ";
+        std::cout << "Некорректный тип сотрудника введите 0 для создания Worker, 1 для Worker1: ";
     }
     return creators[type]->createFromConsole();
 }
