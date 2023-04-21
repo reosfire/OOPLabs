@@ -52,12 +52,10 @@ void consoleInteractor::findByDepartment() {
 
     if (!found) std::cout << "ѕо вашему запросу ничего не найденно" << std::endl;
 }
-int compare(double a, double b) {
-    return (a > b) - (b > a);
-}
+
 void consoleInteractor::sort() {
-    std::sort(workers, workers + workersCount, [](const baseWorker* a, const baseWorker* b) {
-        return compare(b->getSalary(), a->getSalary());
+    std::sort(workers, workers + workersCount, [](baseWorker* a, baseWorker* b) {
+        return a->getSalary() < b->getSalary();
     });
 
     print();

@@ -5,10 +5,8 @@
 baseWorker* worker1Creator::create(std::istream &stream) const {
     fullName name;
     stream >> name;
-    double salary;
-    stream >> salary;
-    int department;
-    stream >> department;
+    double salary = readDouble(stream);
+    int department = readInt(stream);
 
     std::string profession;
     stream >> profession;
