@@ -22,6 +22,4 @@ public:
 
     virtual void print() const = 0;
     virtual void serialize(std::ofstream& stream) const = 0;
-
-    static void saveWorkers(const std::vector<baseWorker*>& workers, const std::string& fileName = "data.txt");
 };

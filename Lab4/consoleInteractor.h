@@ -8,7 +8,8 @@
 
 class consoleInteractor {
 private:
-    std::vector<baseWorker*> workers;
+    int workersCount;
+    baseWorker** workers;
     workersStreamFactory factory;
 
     void add();
@@ -16,6 +17,8 @@ private:
     void findByDepartment();
     void sort();
     void findByMan();
+
+    void saveData(const std::string& fileName = "data.txt");
 
 public:
     explicit consoleInteractor(workersStreamFactory& factory);

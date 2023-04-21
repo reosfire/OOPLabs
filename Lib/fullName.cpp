@@ -14,12 +14,12 @@ std::ostream &operator<<(std::ostream &stream, const fullName &e) {
     stream << e.getSurname() << std::endl;
     return stream;
 }
-std::istream &operator>>(std::istream &stìream, fullName &e) {
+std::istream &operator>>(std::istream &stream, fullName &e) {
     stream >> e.name >> e.surname;
     return stream;
 }
 
-bool fullName::operator==(const fullðName &other) {
+bool fullName::operator==(const fullName &other) {
     return name == other.name && surname == other.surname;
 }
 bool fullName::operator!=(const fullName &other) {

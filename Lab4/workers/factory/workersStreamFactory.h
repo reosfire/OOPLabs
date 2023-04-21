@@ -13,5 +13,5 @@ public:
     baseWorker* factorize(std::istream& stream) const;
     baseWorker* factorizeFromConsole() const;
 
-    std::vector<baseWorker*> getInitialWorkers(const std::string& fileName = "data.txt") const;
+    baseWorker** getInitialWorkers(int& resultCount, const std::string& fileName = "data.txt") const;
 };

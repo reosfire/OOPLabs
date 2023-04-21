@@ -3,11 +3,11 @@
 
 baseWorker* workerCreator::create(std::istream &stream) const {
     fullName name;
-    std::cin >> name;
+    stream >> name;
     double salary;
-    std::cin >> salary;
+    stream >> salary;
     int department;
-    std::cin >> department;
+    stream >> department;
 
     return new worker(name, salary, department);
 }
