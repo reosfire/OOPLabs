@@ -70,14 +70,14 @@ std::string readNotEmptyLine(std::istream& stream) {
     }
 }
 
-fullName readFullName(std::istream& stream) {
+fullName readFullNameFromConsole() {
     std::cout << "¬ведите им€: ";
     std::string name = readNotEmptyLine();
     std::cout << "¬ведите фамилию: ";
     std::string surname = readNotEmptyLine();
     return { name, surname };
 }
-date readDate(std::istream& stream) {
+date readDateFromConsole() {
     int day;
     std::string month;
     int year;

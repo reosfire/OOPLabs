@@ -1,5 +1,7 @@
 #include "worker1.h"
 
+#include <utility>
+
 struct comma_separator: std::numpunct<char> {
     char do_decimal_point() const override { return ','; }
 };
@@ -12,11 +14,14 @@ void worker1::print() const {
 }
 void worker1::serialize(std::ofstream &stream) const {
     stream.imbue(std::locale(std::cout.getloc(), new comma_separator));
-    stream << 0 << std::endl; //type
+    stream << 1 << std::endl; //type
     stream << name.getName() << std::endl;
     stream << name.getSurname() << std::endl;
     stream << department << std::endl;
     stream << salary << std::endl;
 }
 
-worker1::worker1(const fullName &name, double salary, int department): baseWorker(name, salary, department) { }
+worker1::worker1(const fullName &name, double salary, int department, std::string profession, date receiptDate):
+baseWorker(name, salary, department),
+profession(std::move(profession)),
+receiptDate(std::move(receiptDate)) { }

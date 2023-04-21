@@ -12,7 +12,6 @@ int baseWorker::getDepartment() const {
     return department;
 }
 
-baseWorker::baseWorker(fullName name, double salary, int department) : name(std::move(name)), salary(salary),
-                                                                              department(department) { }
+baseWorker::baseWorker(fullName name, double salary, int department) : name(std::move(name)), salary(salary), department(department) { }
 
 baseWorker::~baseWorker() = default;

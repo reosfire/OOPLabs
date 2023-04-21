@@ -14,6 +14,7 @@ private:
 
 public:
     date(int day, std::string month, int year);
+    date();
 
     int getDay() const;
     std::string getMonth() const;

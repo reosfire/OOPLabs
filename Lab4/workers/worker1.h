@@ -7,8 +7,11 @@
 #include "../../Lib/myio.h"
 
 class worker1 : public baseWorker {
+private:
+    std::string profession;
+    date receiptDate;
 public:
-    worker1(const fullName &name, double salary, int department);
+    worker1(const fullName &name, double salary, int department, std::string profession, date receiptDate);
 
     void print() const override;
     void serialize(std::ofstream& stream) const override;

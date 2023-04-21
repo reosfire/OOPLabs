@@ -4,7 +4,8 @@
 
 const std::string date::months[] = { "янв", "фев", "март", "апр", "май", "июнь", "июль", "авг", "сент", "окт", "ноя", "дек" };
 
-date::date(int day, std::string month, int year) : day(day), month(std::move(month)), year(year) {}
+date::date(int day, std::string month, int year) : day(day), month(std::move(month)), year(year) { }
+date::date(): day(0), month(months[0]), year(0) { }
 
 std::ostream& operator<<(std::ostream& stream, const date& e) {
     stream << e.day << std::endl;
