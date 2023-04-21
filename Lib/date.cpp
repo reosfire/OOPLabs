@@ -8,9 +8,9 @@ date::date(int day, std::string month, int year) : day(day), month(std::move(mon
 date::date(): day(0), month(months[0]), year(0) { }
 
 std::ostream& operator<<(std::ostream& stream, const date& e) {
-    stream << e.day << std::endl;
-    stream << e.month << std::endl;
-    stream << e.year << std::endl;
+    stream << e.day << " ";
+    stream << e.month << " ";
+    stream << e.year;
     return stream;
 }
 std::istream& operator>>(std::istream& stream, date& e) {

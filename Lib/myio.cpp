@@ -93,7 +93,12 @@ date readDateFromConsole() {
     while (true) {
         month = readNotEmptyLine();
         if (date::isCorrectMonth(month)) break;
-        std::cout << "Вы ввели некорректный месяц";
+        std::cout << "Вы ввели некорректный месяц, введите один из [";
+        for (int i = 0; i < 12; ++i) {
+            std::cout << date::months[i];
+            if (i != 11) std::cout << ", ";
+        }
+        std::cout << "]: ";
     }
 
     std::cout << "Введите год: ";

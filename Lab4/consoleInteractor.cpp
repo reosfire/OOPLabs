@@ -40,6 +40,8 @@ void consoleInteractor::findByDepartment() {
     std::cout << "Âגוהטעו םמלונ מעהוכא: ";
     int department = readInt();
 
+    std::cout << std::endl;
+
     bool found = false;
 
     for (int i = 0; i < workersCount; ++i) {
@@ -61,8 +63,7 @@ void consoleInteractor::sort() {
     print();
 }
 void consoleInteractor::findByMan() {
-    fullName name;
-    std::cin >> name;
+    fullName name = readFullNameFromConsole();
 
     std::cout << std::endl;
 

@@ -5,8 +5,10 @@
 baseWorker* worker1Creator::create(std::istream &stream) const {
     fullName name;
     stream >> name;
-    double salary = readDouble(stream);
-    int department = readInt(stream);
+    double salary;
+    stream >> salary;
+    int department;
+    stream >> department;
 
     std::string profession;
     stream >> profession;
@@ -23,6 +25,7 @@ baseWorker* worker1Creator::createFromConsole() const {
     std::cout << "¬ведите отдел: ";
     int department = readInt();
 
+    std::cout << "¬ведите профессию: ";
     std::string profession = readNotEmptyLine();
     std::cout << "¬ведите дату поступлени€: \n";
     date receiptDate = readDateFromConsole();
