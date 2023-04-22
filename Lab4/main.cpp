@@ -6,11 +6,10 @@
 int main() {
     useRussian();
 
-    std::vector<IWorkerCreator*> creators(2);
-    workerCreator c0;
-    creators[0] = &c0;
-    worker1Creator c1;
-    creators[1] = &c1;
+    std::vector<IWorkerCreator*> creators {
+        new workerCreator(),
+        new worker1Creator()
+    };
 
     workersStreamFactory factory(creators);
 
