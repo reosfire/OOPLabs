@@ -1,7 +1,5 @@
 #include "date.h"
 
-#include <utility>
-
 const std::string date::months[] = { "янв", "фев", "март", "апр", "май", "июнь", "июль", "авг", "сент", "окт", "ноя", "дек" };
 
 date::date(int day, std::string month, int year) : day(day), month(std::move(month)), year(year) { }

@@ -1,7 +1,5 @@
 #include "fullName.h"
 
-#include <utility>
-
 std::string fullName::getName() const {
     return name;
 }
