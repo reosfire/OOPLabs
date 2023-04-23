@@ -13,12 +13,12 @@ protected:
 
 public:
     baseWorker(fullName name, double salary, int department);
+    virtual ~baseWorker();
 
     fullName getName() const;
     double getSalary() const;
     int getDepartment() const;
 
-    virtual ~baseWorker();
 
     virtual void print() const = 0;
     virtual void serialize(std::ofstream& stream) const = 0;

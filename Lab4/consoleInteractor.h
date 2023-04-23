@@ -22,6 +22,7 @@ private:
 
 public:
     explicit consoleInteractor(workersStreamFactory& factory);
+    virtual ~consoleInteractor();
 
     void start();
 };

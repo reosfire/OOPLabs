@@ -88,3 +88,7 @@ void consoleInteractor::saveData(const std::string& fileName) {
 
     file.close();
 }
+
+consoleInteractor::~consoleInteractor() {
+    delete[] workers;
+}
