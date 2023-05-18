@@ -17,24 +17,26 @@ baseWorker* workersStreamFactory::factorizeFromConsole() const {
     return creators[type]->createFromConsole();
 }
 
-baseWorker** workersStreamFactory::getInitialWorkers(int& resultCount, const std::string &fileName) const {
-    std::ifstream file(fileName);
+baseWorker** workersStreamFactory::getInitialWorkers(int& resultCount, const std::string& fileName) const {
+    //Exception 0
+    try {
+        std::ifstream file = openFile(fileName);
 
-    if (!file.is_open()) {
+        int count = readInt(file);
+        auto** result = new baseWorker*[count];
+
+        for (int i = 0; i < count; ++i) {
+            result[i] = factorize(file);
+        }
+
+        file.close();
+        resultCount = count;
+        return result;
+    }
+    catch(const std::fstream::failure&) {
         resultCount = 0;
         return {};
     }
-
-    int count = readInt(file);
-    auto** result = new baseWorker*[count];
-
-    for (int i = 0; i < count; ++i) {
-        result[i] = factorize(file);
-    }
-
-    file.close();
-    resultCount = count;
-    return result;
 }
 
 workersStreamFactory::workersStreamFactory(): workersStreamFactory(std::vector<IWorkerCreator*>()) { }

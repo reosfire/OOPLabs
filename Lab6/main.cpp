@@ -12,8 +12,8 @@ int main() {
     };
 
     workersStreamFactory factory(creators);
-
-    consoleInteractor interactor(factory);
+    workersDatabase database(factory);
+    consoleInteractor interactor(database);
     interactor.start();
 
     return 0;

@@ -5,24 +5,19 @@
 #include "../Lib/labeledFunction.h"
 #include "workers/factory/workersStreamFactory.h"
 #include "../Lib/myio.h"
+#include "workersDatabase.h"
 
 class consoleInteractor {
 private:
-    int workersCount;
-    baseWorker** workers;
-    workersStreamFactory factory;
+    workersDatabase database;
 
     void add();
     void print();
     void findByDepartment();
     void sort();
     void findByMan();
-
-    void saveData(const std::string& fileName = "data.txt");
-
 public:
-    explicit consoleInteractor(workersStreamFactory& factory);
-    virtual ~consoleInteractor();
+    explicit consoleInteractor(const workersDatabase& database);
 
     void start();
 };

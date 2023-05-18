@@ -4,6 +4,7 @@
 #include <cstring>
 #include <algorithm>
 #include <iomanip>
+#include <fstream>
 #include "fullName.h"
 #include "date.h"
 
@@ -19,3 +20,5 @@ std::string readNotEmptyLine(std::istream& stream = std::cin);
 void writeString(FILE* file, const char* value);
 void writeInt(FILE* file, int value);
 void writeDouble(FILE* file, double value);
+
+std::ifstream openFile(const std::string& fileName);

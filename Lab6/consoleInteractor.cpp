@@ -1,6 +1,7 @@
 #include "consoleInteractor.h"
+#include "exceptions.h"
 
-consoleInteractor::consoleInteractor(workersStreamFactory& factory): factory(factory), workersCount(0), workers(factory.getInitialWorkers(workersCount)) { }
+consoleInteractor::consoleInteractor(const workersDatabase& database): database(database) { }
 
 void consoleInteractor::start() {
     std::vector<labeledFunction> functions {
@@ -14,81 +15,48 @@ void consoleInteractor::start() {
 
     labeledFunction::runLoop(functions);
 
-    saveData();
+    database.saveData();
 }
 
 void consoleInteractor::add() {
-    auto** newWorkers = new baseWorker*[workersCount + 1];
-
-    for (int i = 0; i < workersCount; ++i) {
-        newWorkers[i] = workers[i];
-    }
-    newWorkers[workersCount] = factory.factorizeFromConsole();
-
-    delete[] workers;
-    workers = newWorkers;
-    workersCount++;
+    database.add();
 }
 void consoleInteractor::print() {
-    if (workersCount == 0) std::cout << "База данных пуста!" << std::endl;
-    for (int i = 0; i < workersCount; ++i) {
-        workers[i]->print();
+    if (database.getWorkersCount() == 0) std::cout << "База данных пуста!" << std::endl;
+
+    for (int i = 0; i < database.getWorkersCount(); ++i) {
+        database.getWorkers()[i]->print();
         std::cout << std::endl;
     }
 }
 void consoleInteractor::findByDepartment() {
-    std::cout << "Введите номер отдела: ";
-    int department = readInt();
+    //Exception 1
+    try {
+        std::cout << "Введите номер отдела: ";
+        int department = readInt();
 
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    bool found = false;
-
-    for (int i = 0; i < workersCount; ++i) {
-        if (workers[i]->getDepartment() == department) {
-            workers[i]->print();
-            std::cout << std::endl;
-            found = true;
-        }
+        database.findByDepartment(department);
     }
-
-    if (!found) std::cout << "По вашему запросу ничего не найденно" << std::endl;
+    catch (const notFoundException& e) {
+        std::cout << "По вашему запросу ничего не найденно" << std::endl;
+    }
 }
 
 void consoleInteractor::sort() {
-    std::sort(workers, workers + workersCount, [](baseWorker* a, baseWorker* b) {
-        return a->getSalary() < b->getSalary();
-    });
-
+    database.sort();
     print();
 }
 void consoleInteractor::findByMan() {
-    fullName name = readFullNameFromConsole();
+    try {
+        fullName name = readFullNameFromConsole();
 
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    for (int i = 0; i < workersCount; ++i) {
-        if (workers[i]->getName() == name) {
-            workers[i]->print();
-            std::cout << std::endl;
-            return;
-        }
+        database.findByMan(name);
     }
-
-    std::cout << "По вашему запросу ничего не найденно" << std::endl;
-}
-
-void consoleInteractor::saveData(const std::string& fileName) {
-    std::ofstream file(fileName);
-
-    file << workersCount << std::endl;
-    for (int i = 0; i < workersCount; ++i) {
-        workers[i]->serialize(file);
+    catch (const notFoundException& e) {
+        std::cout << "По вашему запросу ничего не найденно" << std::endl;
     }
-
-    file.close();
-}
-
-consoleInteractor::~consoleInteractor() {
-    delete[] workers;
 }

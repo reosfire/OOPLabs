@@ -121,3 +121,11 @@ void writeDouble(FILE* file, double value) {
     sprintf_s(buff, 1000,"%lf", value);
     writeString(file, buff);
 }
+
+std::ifstream openFile(const std::string& fileName) {
+    std::ifstream result(fileName);
+
+    //Exception 0
+    if (!result.is_open()) throw std::fstream::failure("File is not actually open");
+    return result;
+}

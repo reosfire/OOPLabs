@@ -30,4 +30,7 @@ add_executable(Lab6 main.cpp
         workers/factory/creators/worker1Creator.cpp
         workers/factory/creators/worker1Creator.h
         ../Lib/dynamicArray.cpp
-        ../Lib/dynamicArray.h)
+        ../Lib/dynamicArray.h
+        workersDatabase.cpp
+        workersDatabase.h
+        exceptions.h)
