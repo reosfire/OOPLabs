@@ -1,5 +1,4 @@
 #include "workerCreator.h"
-#include "../../worker.h"
 
 baseWorker* workerCreator::create(std::istream &stream) const {
     fullName name;

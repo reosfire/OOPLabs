@@ -22,3 +22,10 @@ worker1::worker1(const fullName &name, double salary, int department, std::strin
 baseWorker(name, salary, department),
 profession(std::move(profession)),
 receiptDate(std::move(receiptDate)) { }
+
+std::string worker1::getProfession() {
+    return profession;
+}
+date worker1::getReceiptDate() {
+    return receiptDate;
+}

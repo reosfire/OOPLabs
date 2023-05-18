@@ -13,6 +13,9 @@ private:
 public:
     worker1(const fullName &name, double salary, int department, std::string profession, date receiptDate);
 
+    std::string getProfession();
+    date getReceiptDate();
+
     void print() const override;
     void serialize(std::ofstream& stream) const override;
 };

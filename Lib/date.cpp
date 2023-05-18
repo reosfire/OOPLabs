@@ -48,3 +48,12 @@ bool date::isCorrectMonth(const std::string& month) {
     return monthToInt(month) != -1;
 }
 
+int dateToInt(const date& date) {
+    return date.getYear() * 366 + date::monthToInt(date.getMonth()) * 32 + date.getDay();
+}
+int date::compareTo(const date& other) const {
+    int currentInt = dateToInt(*this);
+    int otherInt = dateToInt(other);
+    return (currentInt > otherInt) - (currentInt < otherInt);
+}
+

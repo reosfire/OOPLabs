@@ -16,6 +16,7 @@ private:
     void findByDepartment();
     void sort();
     void findByMan();
+    void findOldWorkers();
 public:
     explicit consoleInteractor(const workersDatabase& database);
 

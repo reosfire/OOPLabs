@@ -23,6 +23,8 @@ public:
     void print() const;
     void serialize(std::ostream& stream) const;
 
+    int compareTo(const date& other) const;
+
     static const std::string months[];
     static int monthToInt(const std::string& month);
     static bool isCorrectMonth(const std::string& month);

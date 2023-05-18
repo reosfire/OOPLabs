@@ -1,6 +1,4 @@
 #include "worker1Creator.h"
-#include "../../../../Lib/myio.h"
-#include "../../worker1.h"
 
 baseWorker* worker1Creator::create(std::istream &stream) const {
     fullName name;

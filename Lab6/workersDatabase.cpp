@@ -72,3 +72,35 @@ int workersDatabase::getWorkersCount() const {
 baseWorker** workersDatabase::getWorkers() {
     return workers;
 }
+
+worker1* asWorker1(baseWorker* worker) {
+    return dynamic_cast<worker1*>(worker);
+}
+bool lessThanTenYear(const date& givenDate, const date& currentDate) {
+    date addedDate(givenDate.getDay(), givenDate.getMonth(), givenDate.getYear() + 10);
+    return addedDate.compareTo(currentDate) >= 0;
+}
+worker1** workersDatabase::findOldWorkers(int* resultSize, const date& currentDate) {
+    *resultSize = 0;
+    worker1** result = new worker1*[0];
+
+    for (int i = 0; i < workersCount; ++i) {
+        worker1* casted = asWorker1(workers[i]);
+        if (casted == nullptr) continue;
+        if (lessThanTenYear(casted->getReceiptDate(), currentDate)) continue;
+
+        (*resultSize)++;
+        worker1** newResult = new worker1*[*resultSize];
+        for (int j = 0; j < (*resultSize - 1); ++j) {
+            newResult[j] = result[j];
+        }
+        newResult[*resultSize - 1] = casted;
+
+        delete[] result;
+        result = newResult;
+    }
+
+    //Exception 3
+    if (*resultSize == 0) throw notFoundException();
+    else return result;
+}

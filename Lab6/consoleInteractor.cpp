@@ -10,7 +10,8 @@ void consoleInteractor::start() {
             labeledFunction("Распечатать", [this](){ this->print(); }),
             labeledFunction("Поиск по номеру отдела", [this](){ this->findByDepartment(); }),
             labeledFunction("Сортировка по зарплате", [this](){ this->sort(); }),
-            labeledFunction("Поиск по имени и фамилии", [this](){ this->findByMan(); })
+            labeledFunction("Поиск по имени и фамилии", [this](){ this->findByMan(); }),
+            labeledFunction("Поиск людей со стажем более 10 лет", [this](){ this->findOldWorkers(); })
     };
 
     labeledFunction::runLoop(functions);
@@ -56,6 +57,25 @@ void consoleInteractor::findByMan() {
         std::cout << std::endl;
 
         database.findByMan(name);
+    }
+    catch (const notFoundException& e) {
+        std::cout << "По вашему запросу ничего не найденно" << std::endl;
+    }
+}
+
+void consoleInteractor::findOldWorkers() {
+    try {
+        date currentDate = readDateFromConsole();
+
+        std::cout << std::endl;
+
+        int resultSize = 0;
+        worker1** result = database.findOldWorkers(&resultSize, currentDate);
+
+        for (int i = 0; i < resultSize; ++i) {
+            result[i]->print();
+            std::cout << std::endl;
+        }
     }
     catch (const notFoundException& e) {
         std::cout << "По вашему запросу ничего не найденно" << std::endl;
