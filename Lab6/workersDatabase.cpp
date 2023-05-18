@@ -47,6 +47,7 @@ void workersDatabase::findByMan(const fullName& name) {
         }
     }
 
+    //Exception 2
     throw notFoundException();
 }
 

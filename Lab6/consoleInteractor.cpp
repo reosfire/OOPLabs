@@ -49,6 +49,7 @@ void consoleInteractor::sort() {
     print();
 }
 void consoleInteractor::findByMan() {
+    //Exception 2
     try {
         fullName name = readFullNameFromConsole();
 
