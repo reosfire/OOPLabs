@@ -14,6 +14,8 @@ add_executable(Lab6 main.cpp
         ../Lib/date.h
         ../Lib/fullName.cpp
         ../Lib/fullName.h
+        ../Lib/dynamicArray.cpp
+        ../Lib/dynamicArray.h
         workers/worker.cpp
         workers/worker.h
         workers/worker1.cpp
@@ -29,8 +31,6 @@ add_executable(Lab6 main.cpp
         workers/factory/creators/workerCreator.h
         workers/factory/creators/worker1Creator.cpp
         workers/factory/creators/worker1Creator.h
-        ../Lib/dynamicArray.cpp
-        ../Lib/dynamicArray.h
         workersDatabase.cpp
         workersDatabase.h
         exceptions.h)
