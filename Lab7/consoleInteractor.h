@@ -14,6 +14,8 @@ private:
     void findByDepartment();
     void sort();
     void findByMan();
+    void randomAdd();
+    void removeFirst();
 
 public:
     explicit consoleInteractor();

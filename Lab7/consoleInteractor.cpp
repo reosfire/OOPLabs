@@ -11,7 +11,9 @@ void consoleInteractor::start() {
             labeledFunction("Распечатать", [this](){ this->print(); }),
             labeledFunction("Поиск по номеру отдела", [this](){ this->findByDepartment(); }),
             labeledFunction("Сортировка по зарплате", [this](){ this->sort(); }),
-            labeledFunction("Поиск по имени и фамилии", [this](){ this->findByMan(); })
+            labeledFunction("Поиск по имени и фамилии", [this](){ this->findByMan(); }),
+            labeledFunction("Удалить первый элемент", [this](){ this->removeFirst(); }),
+            labeledFunction("Добавить в произвольное место", [this](){ this->randomAdd(); })
     };
 
     labeledFunction::runLoop(functions);
@@ -72,4 +74,34 @@ void consoleInteractor::findByMan() {
     }
 
     std::cout << "По вашему запросу ничего не найденно" << std::endl;
+}
+
+void consoleInteractor::randomAdd() {
+    std::cout << "Введите индекс элемента перед которым нужно вставить новый [0; " << workers.size() << "]: ";
+
+    int insertIndex;
+    while (true) {
+        insertIndex = readInt();
+        if (insertIndex >= 0 && insertIndex <= workers.size()) break;
+        std::cout << "Индекс должен принадлежать отрезку [0; " << workers.size() << "]: ";
+    }
+
+    worker toAdd;
+    std::cin >> toAdd;
+
+    auto insertPosition = workers.begin();
+    while (insertIndex > 0) {
+        insertPosition++;
+        --insertIndex;
+    }
+
+    workers.insert(insertPosition, toAdd);
+}
+
+void consoleInteractor::removeFirst() {
+    if (workers.empty()) std::cout << "База данных пуста!" << std::endl;
+    else {
+        workers.erase(workers.begin());
+        std::cout << "Элемент успешно удалён" << std::endl;
+    }
 }
