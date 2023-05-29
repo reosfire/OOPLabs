@@ -1,5 +1,4 @@
 #include "consoleInteractor.h"
-#include "../Lib/myio.h"
 
 consoleInteractor::consoleInteractor() {
     workers = worker::getInitialWorkers();

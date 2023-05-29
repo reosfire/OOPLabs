@@ -21,4 +21,5 @@ std::istream &operator>>(std::istream& stream, man& man) {
         man.name = readLine(stream);
         man.surname = readLine(stream);
     }
+    return stream;
 }
